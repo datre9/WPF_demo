@@ -50,6 +50,6 @@
         <TextBlock Text="Komentář" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
         <TextBox Grid.Row="8" Grid.Column="0" Margin="15" Padding="0" Grid.ColumnSpan="2"/>
 
-        <Button Content="Uložit" Grid.Row="9" Grid.Column="1" Width="100" Height="40" HorizontalAlignment="Right"/>
+        <Button Content="Uložit" Grid.Row="9" Grid.Column="1" Width="100" Height="40" HorizontalAlignment="Right" Command="{Binding NavigateBmiChartCommand}"/>
     </Grid>
 </UserControl>

@@ -5,10 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_demo"
         xmlns:userControls="clr-namespace:WPF_demo.View.UserControls"
+        xmlns:viewModels="clr-namespace:WPF_demo.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="800"
         FontSize="20">
-    <Grid>
-        <userControls:BmiChart/>
-    </Grid>
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type viewModels:NewProbandViewModel}">
+                <userControls:NewProband/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:BmiChartViewModel}">
+                <userControls:BmiChart/>
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
 </Window>

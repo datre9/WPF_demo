@@ -60,8 +60,6 @@ namespace WPF_demo.View.UserControls {
 					Values = perc3
 				},
 			};
-
-			DataContext = this;
 		}
 		// TODO: data pouze chalpcu, pridat data pro dívky
 		public ISeries[] Series { get; set; }
