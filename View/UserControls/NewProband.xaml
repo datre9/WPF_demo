@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="WPF_demo.View.UserControls.NewProband"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_demo.View.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Margin="10" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Nový proband" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
+
+        <TextBlock Text="Jméno" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Grid.Row="2" Margin="15" Padding="0"/>
+
+        <TextBlock Text="Příjmení" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Margin="15" Padding="0"/>
+
+        <TextBlock Text="Pohlaví" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" Margin="15,0,0,0" VerticalAlignment="Center">
+            <RadioButton Content="Muž" Margin="0,0,0,0"/>
+            <RadioButton Content="Žena" Margin="20,0,0,0"/>
+        </StackPanel>
+
+        <TextBlock Text="Datum narození" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <DatePicker Grid.Row="4" Grid.Column="1" Margin="15" Padding="0" />
+
+        <TextBlock Text="Váha (kg)" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Grid.Row="6" Grid.Column="0" Margin="15" Padding="0"/>
+
+        <TextBlock Text="Výška (cm)" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="15" Padding="0"/>
+
+        <TextBlock Text="Komentář" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Grid.Row="8" Grid.Column="0" Margin="15" Padding="0" Grid.ColumnSpan="2"/>
+
+        <Button Content="Uložit" Grid.Row="9" Grid.Column="1" Width="100" Height="40" HorizontalAlignment="Right"/>
+    </Grid>
+</UserControl>
