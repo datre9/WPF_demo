@@ -4,8 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_demo.View.UserControls"
+             xmlns:conv="clr-namespace:WPF_demo.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
+    <UserControl.Resources>
+        <conv:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </UserControl.Resources>
+
     <Grid Margin="10" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -27,29 +32,33 @@
         <TextBlock Text="Nový proband" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="10,0,0,0"/>
 
         <TextBlock Text="Jméno" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <TextBox Grid.Row="2" Margin="15" Padding="0"/>
+        <TextBox Grid.Row="2" Grid.Column="0" Margin="15" Padding="0"
+                 Text="{Binding FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Příjmení" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <TextBox Grid.Row="2" Grid.Column="2" Margin="15" Padding="0"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="15" Padding="0"
+                 Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Pohlaví" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
         <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal" Margin="15,0,0,0" VerticalAlignment="Center">
-            <RadioButton Content="Muž" Margin="0,0,0,0"/>
-            <RadioButton Content="Žena" Margin="20,0,0,0"/>
+            <RadioButton Content="Muž" Margin="0,0,0,0"
+                         IsChecked="{Binding IsMale, Mode=TwoWay}" GroupName="Gender"/>
+            <RadioButton Content="Žena" Margin="20,0,0,0"
+                         IsChecked="{Binding IsMale, Mode=TwoWay, Converter={StaticResource InverseBooleanConverter}}" GroupName="Gender"/>
         </StackPanel>
 
         <TextBlock Text="Datum narození" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <DatePicker Grid.Row="4" Grid.Column="1" Margin="15" Padding="0" />
+        <DatePicker Grid.Row="4" Grid.Column="1" Margin="15" Padding="0" SelectedDate="{Binding DateOfBirth, Mode=TwoWay}"/>
 
         <TextBlock Text="Váha (kg)" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <TextBox Grid.Row="6" Grid.Column="0" Margin="15" Padding="0"/>
+        <TextBox Grid.Row="6" Grid.Column="0" Margin="15" Padding="0" Text="{Binding WeightKg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Výška (cm)" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <TextBox Grid.Row="6" Grid.Column="1" Margin="15" Padding="0"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Margin="15" Padding="0" Text="{Binding HeightCm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Komentář" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <TextBox Grid.Row="8" Grid.Column="0" Margin="15" Padding="0" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Row="8" Grid.Column="0" Margin="15" Padding="0" Grid.ColumnSpan="2" Text="{Binding Notes, Mode=TwoWay}"/>
 
-        <Button Content="Uložit" Grid.Row="9" Grid.Column="1" Width="100" Height="40" HorizontalAlignment="Right" Command="{Binding NavigateBmiChartCommand}"/>
+        <Button Content="Pokračovat" Grid.Row="9" Grid.Column="1" Width="100" Height="40" HorizontalAlignment="Right" Command="{Binding CreateProbandCommand}"/>
     </Grid>
 </UserControl>

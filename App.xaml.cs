@@ -7,8 +7,9 @@ namespace WPF_demo {
 
 		protected override void OnStartup(StartupEventArgs e) {
 			NavigationStore navigationStore = new NavigationStore();
+			ProbandStore probandStore = new ProbandStore();
 
-			navigationStore.CurrentViewModel = new NewProbandViewModel(navigationStore);
+			navigationStore.CurrentViewModel = new NewProbandViewModel(navigationStore, probandStore);
 
 			MainWindow = new MainWindow() {
 				DataContext = new MainWindowViewModel(navigationStore)

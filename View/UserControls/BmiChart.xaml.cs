@@ -1,10 +1,16 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WPF_demo.View.UserControls {
 	public partial class BmiChart : UserControl {
+		private INotifyPropertyChanged? _vmNotifier;
+
 		public BmiChart() {
 			InitializeComponent();
 
@@ -60,9 +66,64 @@ namespace WPF_demo.View.UserControls {
 					Values = perc3
 				},
 			};
+
+			// set the chart series initially
+			Chart.Series = Series;
+
+			// react to DataContext changes so we can add the proband BMI point when the viewmodel is assigned
+			this.DataContextChanged += BmiChart_DataContextChanged;
 		}
+
 		// TODO: data pouze chalpcu, pridat data pro dívky
 		public ISeries[] Series { get; set; }
+
+		private void BmiChart_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e) {
+			// unsubscribe old vm propertychanged
+			if (_vmNotifier != null) {
+				_vmNotifier.PropertyChanged -= Vm_PropertyChanged;
+				_vmNotifier = null;
+			}
+
+			if (e.NewValue is ViewModel.BmiChartViewModel vm) {
+				_vmNotifier = vm as INotifyPropertyChanged;
+				if (_vmNotifier != null) {
+					_vmNotifier.PropertyChanged += Vm_PropertyChanged;
+				}
+
+				// build chart right now using current vm state
+				ApplyVmToChart(vm);
+			} else {
+				Chart.Series = Series;
+			}
+		}
+
+		private void Vm_PropertyChanged(object? sender, PropertyChangedEventArgs e) {
+			if (sender is ViewModel.BmiChartViewModel vm && (e.PropertyName == nameof(ViewModel.BmiChartViewModel.BmiPoint) || string.IsNullOrEmpty(e.PropertyName))) {
+				// update chart when BmiPoint changes
+				ApplyVmToChart(vm);
+			}
+		}
+
+		private void ApplyVmToChart(ViewModel.BmiChartViewModel vm) {
+			if (vm.BmiPoint != null && vm.BmiPoint.Length > 0) {
+				var seriesList = new List<ISeries>(Series);
+
+				// prefer the VM FullName for the legend
+				var probandName = string.IsNullOrWhiteSpace(vm.FullName) ? "Proband BMI" : vm.FullName;
+
+				seriesList.Add(new LineSeries<ObservablePoint>
+				{
+					Name = $"Proband: {probandName}",
+					Fill = null,
+					GeometrySize = 10, // visible marker
+					Values = vm.BmiPoint
+				});
+
+				Chart.Series = seriesList.ToArray();
+			} else {
+				Chart.Series = Series;
+			}
+		}
 
 		public ObservablePoint[] perc3 { get; set; } = new ObservablePoint[]
 		{

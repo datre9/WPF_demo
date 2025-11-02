@@ -1,5 +1,5 @@
 ﻿namespace WPF_demo.Model {
-	internal class Proband {
+	public class Proband {
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public bool IsMale { get; set; }
