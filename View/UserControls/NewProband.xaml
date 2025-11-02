@@ -53,11 +53,14 @@
         <TextBlock Text="Váha (kg)" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
         <TextBox Grid.Row="6" Grid.Column="0" Margin="15" Padding="0" Text="{Binding WeightKg, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Text="Výška (cm)" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBlock Text="Výška/délka (cm)" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
         <TextBox Grid.Row="6" Grid.Column="1" Margin="15" Padding="0" Text="{Binding HeightCm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Text="Komentář" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
-        <TextBox Grid.Row="8" Grid.Column="0" Margin="15" Padding="0" Grid.ColumnSpan="2" Text="{Binding Notes, Mode=TwoWay}"/>
+        <TextBlock Text="Datum měření" Grid.Row="7" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <DatePicker Grid.Row="8" Grid.Column="0" Margin="15" Padding="0" SelectedDate="{Binding DateOfMeasurement, Mode=TwoWay}"/>
+
+        <TextBlock Text="Komentář" Grid.Row="7" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <TextBox Grid.Row="8" Grid.Column="1" Margin="15" Padding="0" Text="{Binding Notes, Mode=TwoWay}"/>
 
         <Button Content="Pokračovat" Grid.Row="9" Grid.Column="1" Width="100" Height="40" HorizontalAlignment="Right" Command="{Binding CreateProbandCommand}"/>
     </Grid>

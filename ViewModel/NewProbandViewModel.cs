@@ -9,6 +9,7 @@ namespace WPF_demo.ViewModel {
 		private string? _lastName;
 		private bool _isMale = true;
 		private DateTime? _dateOfBirth;
+		private DateTime? _dateOfMeasurement = DateTime.Today;
 		private double _weightKg;
 		private double _heightCm;
 		private string? _notes;
@@ -17,6 +18,7 @@ namespace WPF_demo.ViewModel {
 		public string? LastName { get => _lastName; set { _lastName = value; OnPropertyChanged(nameof(LastName)); } }
 		public bool IsMale { get => _isMale; set { _isMale = value; OnPropertyChanged(nameof(IsMale)); } }
 		public DateTime? DateOfBirth { get => _dateOfBirth; set { _dateOfBirth = value; OnPropertyChanged(nameof(DateOfBirth)); } }
+		public DateTime? DateOfMeasurement { get => _dateOfMeasurement; set { _dateOfMeasurement = value; OnPropertyChanged(nameof(DateOfMeasurement)); } }
 		public double WeightKg { get => _weightKg; set { _weightKg = value; OnPropertyChanged(nameof(WeightKg)); } }
 		public double HeightCm { get => _heightCm; set { _heightCm = value; OnPropertyChanged(nameof(HeightCm)); } }
 		public string? Notes { get => _notes; set { _notes = value; OnPropertyChanged(nameof(Notes)); } }

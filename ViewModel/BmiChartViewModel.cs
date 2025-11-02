@@ -47,28 +47,31 @@ namespace WPF_demo.ViewModel {
 				return;
 			}
 
-			var ageYears = (DateTime.Today - p.DateOfBirth).TotalDays / 365.25;
+			// compute age at the time of measurement
+			var referenceDate = p.DateOfMeasurement;
+			var ageYears = (referenceDate - p.DateOfBirth).TotalDays / 365.25;
 			var heightM = p.HeightCm / 100.0;
 			double bmi = (heightM > 0 && p.WeightKg > 0) ? p.WeightKg / (heightM * heightM) : 0.0;
 
 			BmiPoint = new[] { new ObservablePoint(ageYears, bmi) };
 
 			// use safe fallbacks for name parts so the InfoText never shows an empty name line
-			var first = string.IsNullOrWhiteSpace(p.FirstName) ? "<unknown>" : p.FirstName.Trim();
+			var first = string.IsNullOrWhiteSpace(p.FirstName) ? "<neznámo>" : p.FirstName.Trim();
 			var last = string.IsNullOrWhiteSpace(p.LastName) ? string.Empty : p.LastName.Trim();
 			var fullName = (first + " " + last).Trim();
 
 			FullName = fullName;
 
 			InfoText =
-				$"Name: {fullName}\n" +
-				$"Sex: {(p.IsMale ? "Male" : "Female")}\n" +
-				$"DOB: {p.DateOfBirth:yyyy-MM-dd}\n" +
-				$"Age: {ageYears:F1} years\n" +
-				$"Weight: {p.WeightKg:F1} kg\n" +
-				$"Height: {p.HeightCm:F1} cm\n" +
+				$"Jméno: {fullName}\n" +
+				$"Pohlaví: {(p.IsMale ? "Muž" : "Žena")}\n" +
+				$"Datum narození: {p.DateOfBirth:dd.MM.yyyy}\n" +
+				$"Datum měření: {p.DateOfMeasurement:dd.MM.yyyy}\n" +
+				$"Věk (v době měření): {ageYears:F1} let\n" +
+				$"Váha: {p.WeightKg:F1} kg\n" +
+				$"Výška (délka): {p.HeightCm:F1} cm\n" +
 				$"BMI: {bmi:F1}\n" +
-				$"Notes: {p.Notes ?? string.Empty}";
+				$"Komentář: {p.Notes ?? string.Empty}";
 
 			OnPropertyChanged(nameof(BmiPoint));
 			OnPropertyChanged(nameof(InfoText));
