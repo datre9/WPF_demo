@@ -1,5 +1,4 @@
-﻿using System;
-using WPF_demo.Store;
+﻿using WPF_demo.Store;
 
 namespace WPF_demo.ViewModel {
 	internal class MainWindowViewModel : ViewModelBase {
@@ -16,4 +15,4 @@ namespace WPF_demo.ViewModel {
 			OnPropertyChanged(nameof(CurrentViewModel));
 		}
 	}
-} 
+}

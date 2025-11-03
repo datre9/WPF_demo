@@ -1,5 +1,4 @@
-﻿using System;
-using WPF_demo.Store;
+﻿using WPF_demo.Store;
 using WPF_demo.ViewModel;
 
 namespace WPF_demo.Command {

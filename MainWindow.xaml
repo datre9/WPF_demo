@@ -17,6 +17,9 @@
             <DataTemplate DataType="{x:Type viewModels:BmiChartViewModel}">
                 <userControls:BmiChart/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:LandingPageViewModel}">
+                <userControls:LandingPage/>
+            </DataTemplate>
         </ContentControl.Resources>
     </ContentControl>
 </Window>

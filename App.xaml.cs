@@ -9,7 +9,7 @@ namespace WPF_demo {
 			NavigationStore navigationStore = new NavigationStore();
 			ProbandStore probandStore = new ProbandStore();
 
-			navigationStore.CurrentViewModel = new NewProbandViewModel(navigationStore, probandStore);
+			navigationStore.CurrentViewModel = new LandingPageViewModel(navigationStore, probandStore);
 
 			MainWindow = new MainWindow() {
 				DataContext = new MainWindowViewModel(navigationStore)

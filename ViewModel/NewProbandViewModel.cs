@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using WPF_demo.Command;
 using WPF_demo.Store;
 
@@ -24,9 +23,11 @@ namespace WPF_demo.ViewModel {
 		public string? Notes { get => _notes; set { _notes = value; OnPropertyChanged(nameof(Notes)); } }
 
 		public ICommand CreateProbandCommand { get; }
+		public ICommand NavigateLandingPageCommand { get; }
 
 		public NewProbandViewModel(NavigationStore navigationStore, ProbandStore probandStore) {
 			CreateProbandCommand = new CreateProbandCommand(this, navigationStore, probandStore);
+			NavigateLandingPageCommand = new NavigateLandingPageCommand(navigationStore, probandStore);
 		}
 	}
 }

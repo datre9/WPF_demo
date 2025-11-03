@@ -16,7 +16,6 @@ namespace WPF_demo.Command {
 		}
 
 		public override void Execute(object? parameter) {
-			// Basic parsing/validation - adjust as needed.
 			string? message = ValidateInput();
 			if (!string.IsNullOrWhiteSpace(message)) {
 				MessageBox.Show(message, "Validační Chyba", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -36,7 +35,6 @@ namespace WPF_demo.Command {
 
 			_probandStore.CurrentProband = proband;
 
-			// Navigate to BMI chart and pass store
 			_navigationStore.CurrentViewModel = new ViewModel.BmiChartViewModel(_navigationStore, _probandStore);
 		}
 

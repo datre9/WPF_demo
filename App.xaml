@@ -4,12 +4,14 @@
              xmlns:vm="clr-namespace:WPF_demo.ViewModel"
              xmlns:views="clr-namespace:WPF_demo.View.UserControls">
     <Application.Resources>
-        <!-- map viewmodels to UserControls -->
         <DataTemplate DataType="{x:Type vm:NewProbandViewModel}">
             <views:NewProband />
         </DataTemplate>
         <DataTemplate DataType="{x:Type vm:BmiChartViewModel}">
             <views:BmiChart />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:LandingPageViewModel}">
+            <views:LandingPage />
         </DataTemplate>
     </Application.Resources>
 </Application>
