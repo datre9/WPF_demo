@@ -49,8 +49,8 @@ namespace WPF_demo.View.UserControls {
 		}
 			};
 
-			Chart.LegendPosition = LiveChartsCore.Measure.LegendPosition.Hidden;
-			Chart.TooltipPosition = LiveChartsCore.Measure.TooltipPosition.Hidden;
+			Chart.LegendPosition = LiveChartsCore.Measure.LegendPosition.Bottom;
+			//Chart.TooltipPosition = LiveChartsCore.Measure.TooltipPosition.Hidden;
 
 			this.DataContextChanged += BmiChart_DataContextChanged;
 		}
